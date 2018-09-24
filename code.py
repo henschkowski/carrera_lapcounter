@@ -16,6 +16,7 @@ contact[0].pull = Pull.UP
 contact[1].pull = Pull.UP
 
 laps = [0, 0]
+best_lap_time = [1000.0, 1000.0]
 last_contact_time = [0.0, 0.0]
 contact_pressed = [False, False]
 
@@ -49,11 +50,12 @@ while True:
                 print("Start on track %d !" % (track_num,))
             else:
                 lap_time = time.monotonic() - last_contact_time[i]
+                best_lap_time = lap_time if lap_time < best_lap_time
                 last_contact_time[i] = time.monotonic()
                 contact_pressed[i] = True
                 laps[i] += 1
                 track_num = 1 if i == 1 else 2
-                print("Track %s: laps = %d, lap_time = %f" % (track_num, laps[i], lap_time))
+                print("Track %s: laps = %d, lap_time = %f, best_lap_time = %f" % (track_num, laps[i], lap_time, best_lap_time))
         if contact[i].value and contact_pressed[i]:
             contact_pressed[i] = False
 
