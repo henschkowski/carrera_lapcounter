@@ -50,7 +50,8 @@ while True:
                 print("Start on track %d !" % (track_num,))
             else:
                 lap_time = time.monotonic() - last_contact_time[i]
-                best_lap_time = lap_time if lap_time < best_lap_time
+                if lap_time < best_lap_time[i]:
+                    best_lap_time = lap_time 
                 last_contact_time[i] = time.monotonic()
                 contact_pressed[i] = True
                 laps[i] += 1
