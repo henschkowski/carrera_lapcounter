@@ -51,12 +51,12 @@ while True:
             else:
                 lap_time = time.monotonic() - last_contact_time[i]
                 if lap_time < best_lap_time[i]:
-                    best_lap_time = lap_time 
+                    best_lap_time[i] = lap_time 
                 last_contact_time[i] = time.monotonic()
                 contact_pressed[i] = True
                 laps[i] += 1
                 track_num = 1 if i == 1 else 2
-                print("Track %s: laps = %d, lap_time = %f, best_lap_time = %f" % (track_num, laps[i], lap_time, best_lap_time))
+                print("Track %s: laps = %d, lap_time = %f, best_lap_time = %f" % (track_num, laps[i], lap_time, best_lap_time[i]))
         if contact[i].value and contact_pressed[i]:
             contact_pressed[i] = False
 
